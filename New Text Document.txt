@@ -1,0 +1,57 @@
+Cube Movement
+using UnityEngine;
+
+public class CubeMovement : MonoBehaviour
+{
+    public float speed = 5.0f;
+
+    void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horizontal, 0.0f, vertical);
+
+        transform.Translate(movement * speed * Time.deltaTime);
+    }
+}
+Rotate Object
+using UnityEngine;
+
+public class RotateObject : MonoBehaviour
+{
+    public Vector3 rotationSpeed = new Vector3(0, 50, 0);
+
+    void Update()
+    {
+        transform.Rotate(rotationSpeed * Time.deltaTime);
+    }
+}
+Spin Cube
+using UnityEngine;
+
+public class Spin : MonoBehaviour
+{
+    public float moveSpeed = 10f;
+    public float turnSpeed = 50f;
+
+    void Start()
+    {
+        transform.position = new Vector3(0, 0, 0);
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.DownArrow))
+            transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.RightArrow))
+            transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+            transform.Rotate(Vector3.right, -turnSpeed * Time.deltaTime);
+    }
+}
